@@ -14,6 +14,11 @@
                     <CardButton v-bind="buttonProperties"
                     />
                 </Card>
+                <Bubble
+                    v-for="(message, index) in messages"                    
+                    :key="index"
+                    :text="message"
+                    v-if="messages" />
             </tr>
         </table>
     </section>
@@ -71,7 +76,9 @@ import './Theme.sass'
 export default {
     name: 'app',
     components: {
-        Card,      
+        Bubble,
+        Card,
+        Carousel,     
         ChatInput,
         Suggestion,
         CardButton
@@ -84,7 +91,7 @@ export default {
         buttonProperties: test.buttonproperties,
         carouselComponent: Carousel,
         app: null,  
-        messages: [],
+        messages: [],        
         language: '',
         session: '',
         muted: this.config.app.muted,
@@ -96,7 +103,9 @@ export default {
     computed: {
         suggestions(){ 
             // noop
-            let suggestions = []
+            let suggestions = {
+                text_suggestions: ['one', 'two', 'three']
+            }
             return suggestions
         },
         currentProperties: function() {
@@ -111,10 +120,11 @@ export default {
         //if(this.history()) localStorage.setItem('agent', JSON.stringify(configObj))
     },
     watch: {
-        /*
+        
         // This function is triggered, when new messages arrive 
         messages(messages){
-            if(this.history()) localStorage.setItem('message_history', JSON.stringify(messages)) // <- Save history if the feature is enabled
+            //if(this.history()) localStorage.setItem('message_history', JSON.stringify(messages)) // <- Save history if the feature is enabled
+            console.log(messages)
         },
         // This function is triggered, when request is started or finished 
         loading(){
@@ -130,7 +140,7 @@ export default {
         app(agent){
             set_seo(agent)
         }
-        */
+        
     },
      
     methods: {
@@ -187,7 +197,7 @@ export default {
     mounted() {
         this.socket.on('RESPONSE', (data) => {
             this.messages = [...this.messages, ...data.reply];
-            console.log(data)
+            console.log(`Messages receieved`)
             // you can also do this.messages.push(data)
         });
     }

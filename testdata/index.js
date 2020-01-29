@@ -7,7 +7,7 @@ exports.card = {
     text: "This is how the card works",
     imageUri: "https://res.cloudinary.com/dcnd8j37l/image/upload/v1572629854/icon-512x512_tdcvyi.png",
     imageTitle: "Strategic Machines",
-    subtitle: "We're hear to help"
+    subtitle: "In as few as words as possible ...."
 }
 
 exports.smallcard = {
@@ -15,7 +15,7 @@ exports.smallcard = {
     text: "Here is what we suggest",
     imageUri: "https://res.cloudinary.com/dcnd8j37l/image/upload/v1572635319/icon-384x384_qzdrrd.png",
     imageTitle: "Strategic Machines",
-    subtitle: "We're hear to help"
+    subtitle: "How can we help you?"
 }
 
 exports.buttonproperties = {
