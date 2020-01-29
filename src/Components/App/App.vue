@@ -194,8 +194,9 @@ export default {
     },
     mounted() {
         this.socket.on('RESPONSE', (data) => {
+            this.messages = []
             this.messages = [...this.messages, ...data.reply];
-            console.log(`Messages receieved`)
+            console.log(`Messages received`)
             // you can also do this.messages.push(data)
         });
     }
