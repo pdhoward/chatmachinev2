@@ -22,7 +22,7 @@
             </tr>
         </table>
     </section>
-    <ChatInput @submit="send">          
+    <ChatInput @submit="sendMessage">       
         <Suggestion
             v-for="(suggestion, index) in suggestions.text_suggestions"
             @click.native="send(suggestion)"
@@ -145,13 +145,11 @@ export default {
      
     methods: {
         sendMessage(e) {
-            e.preventDefault();
-            
             this.socket.emit('MESSAGE', {
-                user: this.user,
-                netId: this.netId,
-                message: this.message,
-                action: this.action
+                user: "Test User",
+                netId: "rest001",
+                message: e,
+                action: "this.action"
             });
             this.message = ''
             this.action = ''
