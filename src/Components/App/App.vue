@@ -160,7 +160,7 @@ export default {
             this.error = null
             
             // Backend Server Integration 
-            fetch('http://localhost:3100/routes/test', 
+            fetch('http://localhost:3100/routes/test',
                            {method: 'GET', 
                             headers: {'content-type': 'application/json'}})
             .then(response => response.json())
