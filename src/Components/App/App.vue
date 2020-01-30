@@ -18,7 +18,7 @@
                     v-for="(message, index) in messages"                    
                     :key="index"
                     :text="message"
-                    v-if="messages" />
+                    />
             </tr>
         </table>
     </section>
@@ -28,7 +28,7 @@
             @click.native="send(suggestion)"
             :key="index"
             :title="suggestion"
-            v-if="suggestions.text_suggestions" />
+            />
         
         <Suggestion
             :title="suggestions.link_suggestion.destinationName"
@@ -194,9 +194,10 @@ export default {
     },
     mounted() {
         this.socket.on('RESPONSE', (data) => {
-            this.messages = []
+            //this.messages = []
             this.messages = [...this.messages, ...data.reply];
             console.log(`Messages received`)
+            console.log(this.messages)
             // you can also do this.messages.push(data)
         });
     }
