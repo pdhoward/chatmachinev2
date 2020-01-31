@@ -17,16 +17,16 @@
     <ChatInput @submit="sendMessage"> 
         <!-- suggestions -->
          <component
-            v-for="(message, index) in messages"
-            :is="message.component"
-            @click.native="send(message)"
+            v-for="(suggestion, index) in suggestions"
+            :is="suggestion.component"
+            @click.native="sendMessage(suggestion)"
             :key="index"
-            :title="message.title"
+            :title="suggestion.title"
             /> 
         <!-- suggestions with hotlinks -->
         <component
-            v-for="(message, index) in messages"
-            :is="message.component"       
+            v-for="(message, index) in links"
+            :is="message.component"  
             :key="index"
             :title="message.title"
             :url="message.url"
@@ -91,7 +91,8 @@ export default {
         carouselComponent: Carousel,
         app: null,  
         messages: [],
-        suggestions: [],     
+        suggestions: [],
+        links: [], 
         language: '',
         session: '',
         muted: this.config.app.muted,
@@ -190,10 +191,25 @@ export default {
         this.socket.on('RESPONSE', (data) => {
             //this.messages = []
             //this.messages = [...this.messages, ...data.reply];
-            this.messages = data.reply.filter(d => d.component == 'bubble')
-            this.suggestions = data.reply.filter(d => d.component == 'suggestion')
+            //this.messages = data.reply.filter(d => d.component == 'bubble')
+            //this.suggestions = data.reply.filter(d => d.component == 'suggestion')
+            data.reply.forEach(e => {
+                switch(e.component){
+                    case 'bubble':
+                        this.messages.push(e)
+                        break;
+                    case 'suggestion':
+                        this.suggestions.push(e)
+                        break;
+                    default:
+                        break;
+                }
+            })
+            
             console.log(`Messages received`)
             console.log(this.messages)
+            console.log(`SUGGESTIONS received`)
+            console.log(this.suggestions)
             // you can also do this.messages.push(data)
         });
     }
