@@ -1,5 +1,5 @@
 <template>
-    <a target="_blank" rel="noopener noreferrer" class="suggestion">{{title}}</a>
+    <a target="_blank" rel="noopener noreferrer" :href="url" class="suggestion">{{title}}</a>
 </template>
 
 <style lang="sass" scoped>
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-    name: 'Suggestion',
-    props: ['title']
+    name: 'Link',
+    props: ['title', 'url']
 }
 </script>

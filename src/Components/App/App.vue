@@ -1,39 +1,36 @@
 <template>
     <main id="app">
     <section class="container chat-container">  
-        <table class="message">
-            <tr class="component">
-                <component :is="cardComponent" v-bind="currentProperties"></component>
-                <component :is="smallIconComponent" v-bind="smallIconProperties"></component>
-                <component :is="carouselComponent" >
-                    <component :is="cardComponent" v-bind="currentProperties"></component>
-                    <component :is="cardComponent" v-bind="currentProperties"></component>
-                    <component :is="cardComponent" v-bind="currentProperties"></component>
-                </component>
-                <Card v-bind="currentProperties">           
-                    <CardButton v-bind="buttonProperties"
-                    />
-                </Card>
-                <Bubble
-                    v-for="(message, index) in messages"                    
+        <table class="message">            
+            <tr>
+                <!-- message -->
+                 <component                 
+                    v-for="(message, index) in messages"
+                    :is="message.component"                 
                     :key="index"
-                    :text="message"
+                    :text="message.text"
+                    :from="message.to"
                     />
-            </tr>
+            </tr>         
         </table>
     </section>
-    <ChatInput @submit="sendMessage">       
-        <Suggestion
-            v-for="(suggestion, index) in suggestions.text_suggestions"
-            @click.native="send(suggestion)"
+    <ChatInput @submit="sendMessage"> 
+        <!-- suggestions -->
+         <component
+            v-for="(message, index) in messages"
+            :is="message.component"
+            @click.native="send(message)"
             :key="index"
-            :title="suggestion"
-            />
-        
-        <Suggestion
-            :title="suggestions.link_suggestion.destinationName"
-            :url="suggestions.link_suggestion.uri || suggestions.link_suggestion.url"
-            v-if="suggestions.link_suggestion" />
+            :title="message.title"
+            /> 
+        <!-- suggestions with hotlinks -->
+        <component
+            v-for="(message, index) in messages"
+            :is="message.component"       
+            :key="index"
+            :title="message.title"
+            :url="message.url"
+            />          
     </ChatInput>
 
         <!-- Audio toggle (on the top right corner), used to toggle the audio output, default mode is defined in the settings -->
@@ -60,6 +57,7 @@ import Bubble from './../RichComponents/Bubble.vue'
 import Card from './../RichComponents/Card.vue'
 import CardButton from './../RichComponents/CardButton.vue'
 import Carousel from './../RichComponents/Carousel.vue'
+import Link from './../RichComponents/Link.vue'
 import List from './../RichComponents/List.vue'
 import ListItem from './../RichComponents/ListItem.vue'
 import Picture from './../RichComponents/Picture.vue'
@@ -80,6 +78,7 @@ export default {
         Card,
         Carousel,     
         ChatInput,
+        Link,
         Suggestion,
         CardButton
     },
