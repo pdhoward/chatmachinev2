@@ -88,7 +88,7 @@ export default {
     name: 'ChatInput',
     data(){
         return {
-            query: '',
+            query: '',            
             micro: false,
             recognition: null
         }
@@ -126,11 +126,15 @@ export default {
     },
     methods: {
         submit(){
-            if(this.query.length > 0){
-                this.$emit('submit', this.query)
-                this.query = ''
+                if(this.query.length > 0){
+                    let msg = {}                   
+                    msg.component = 'query'
+                    msg.text = this.query
+                    this.$emit('submit', msg)
+                    this.query = ''
+                }                
             }
         }
     }
-}
+
 </script>
