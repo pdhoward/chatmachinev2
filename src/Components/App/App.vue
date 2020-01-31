@@ -90,7 +90,8 @@ export default {
         buttonProperties: test.buttonproperties,
         carouselComponent: Carousel,
         app: null,  
-        messages: [],        
+        messages: [],
+        suggestions: [],     
         language: '',
         session: '',
         muted: this.config.app.muted,
@@ -100,13 +101,7 @@ export default {
         }      
     },
     computed: {
-        suggestions(){ 
-            // noop
-            let suggestions = {
-                text_suggestions: ['one', 'two', 'three']
-            }
-            return suggestions
-        },
+        
         currentProperties: function() {
             if (this.cardComponent === Card) {            
             return test.card
@@ -194,7 +189,9 @@ export default {
     mounted() {
         this.socket.on('RESPONSE', (data) => {
             //this.messages = []
-            this.messages = [...this.messages, ...data.reply];
+            //this.messages = [...this.messages, ...data.reply];
+            this.messages = data.reply.filter(d => d.component == 'bubble')
+            this.suggestions = data.reply.filter(d => d.component == 'suggestion')
             console.log(`Messages received`)
             console.log(this.messages)
             // you can also do this.messages.push(data)
