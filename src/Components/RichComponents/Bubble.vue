@@ -10,10 +10,10 @@
     border-radius: 40px
     color: var(--text)
     border: 1px solid var(--border)
-    display: inline-block
+    display: inline-block 
     position: relative
     background-color: var(--background)
-    min-width: 26px
+    min-width: 52px
 
     &::before
         content: var(--left-bubble)
@@ -28,10 +28,10 @@
         background-color: var(--element-background)
         border: 1px solid var(--element-background)
         color: var(--text-secondary)
-        margin-top: 24px
+        margin-top: 24px        
 
         &::before
-            content: ''
+            content: ''           
 
         &::after
             content: var(--right-bubble)

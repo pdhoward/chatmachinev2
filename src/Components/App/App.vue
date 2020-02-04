@@ -1,17 +1,18 @@
 <template>
     <main id="app">
     <section class="container chat-container">  
-        <table class="message">            
+        <table class="message">  
             <tr>
                 <!-- message -->
-                 <component                 
+                 <component      
                     v-for="(message, index) in messages"
                     :is="message.component"                 
                     :key="index"
                     :text="message.text"
                     :from="message.to"
-                    />
-            </tr>         
+                    > 
+                  </component>                
+            </tr>              
         </table>
     </section>
     <ChatInput @submit="sendMessage"> 
@@ -228,7 +229,7 @@ body
     background-color: var(--background)
 
 .container
-    max-width: 500px
+    max-width: 400px
     margin-left: auto
     margin-right: auto
     padding: 16px
@@ -242,12 +243,12 @@ body
 
 .message
     width: 100%
-    table-layout: fixed
+    table-layout: fixed    
 
     .component
         padding-bottom: 10px
-        width: 70%
-        display: block
+        width: 100% 
+        display: block 
 
         @media screen and (max-width: 720px)
             width: 100%
