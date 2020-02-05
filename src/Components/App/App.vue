@@ -141,10 +141,18 @@ export default {
                 netId: "rest001",
                 message: e,
                 action: "this.action"
-            });
+            });            
             this.message = ''
             this.action = ''
-            this.loading=true
+            //this.loading=true
+            let msg = {
+                component: 'bubble',
+                text: e.text,
+                to: 'guest'
+
+            }
+            this.messages.push(msg)
+            //this.loading=false
         },           
         
         handle(response){
