@@ -34,6 +34,13 @@ Vue.prototype.lang = () => {
     }
 }
 
+Vue.prototype.$scrollTo = (chat) => {
+    console.log(`Executing prototpe`)
+    window.scrollTo(0, chat + 30);
+    //window.scrollTo(0, 600 + 30);
+  }
+
+
 new Vue({
     el: '#app',
     render: h => h(App)

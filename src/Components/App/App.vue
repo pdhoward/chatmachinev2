@@ -3,7 +3,7 @@
     <section class="container chat-container">  
         <table class="message" >          
             <!-- message -->
-          
+            <tr id="message-box" ref="messageBox">
                 <component            
                     v-for="(message, index) in messages"
                     :is="message.component"                 
@@ -12,8 +12,8 @@
                     :from="message.to"
                     >                     
                 </component>
-                              
-        </table>
+            </tr>              
+        </table>       
     </section>
     <ChatInput @submit="sendMessage"> 
         <!-- suggestions -->
@@ -132,7 +132,7 @@ export default {
             if(!shouldScroll){
                  messages[0].scrollTop = messages[0].scrollHeight;
                  window.scrollTo({
-                        top: 100,
+                        top: 0,
                         left: 100,
                         behavior: 'smooth'
                         });
@@ -147,6 +147,13 @@ export default {
             console.log(testcontainer.scrollTop)
             console.log(testcontainer.clientHeight)
             console.log(testcontainer.scrollHeight)
+            console.log(`------ This is reference box-----`)
+            let heightString = this.$refs.messageBox.clientHeight                 
+            this.$nextTick(() => {   
+                let chat = this.$refs.messageBox.clientHeight           
+                console.log(`Executing next tick ${chat}`)
+                this.$scrollTo(chat)
+            })
             
             /*
             setTimeout(() => {
@@ -238,8 +245,12 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700')
 @import url('https://fonts.googleapis.com/css?family=Material+Icons')
 
+html
+    height: 100%
+    margin: 0
 body
     margin: 0
+    height: 100%
     padding: 0
     font-family: Google Sans, Roboto, sans-serif
     font-display: swap
