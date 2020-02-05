@@ -1,16 +1,16 @@
 <template>
-    <span class="bubble" :class="{'me': from == 'me', 'loading': loading}">
+    <span class="bubble clearfix" :class="{'me': from == 'me', 'loading': loading}">
         {{text}}
     </span>
 </template>
 
 <style lang="sass" scoped>
-.bubble
+.bubble   
     padding: 12px
     border-radius: 40px
     color: var(--text)
     border: 1px solid var(--border)
-    display: inline-block 
+    display: inline-block
     position: relative
     background-color: var(--background)
     min-width: 52px
@@ -21,17 +21,17 @@
         left: 0
         top: 0
         margin-top: -9px
-        margin-left: -1px
+        margin-left: -1px        
 
     &.me
-        float: right
+        float: right         
         background-color: var(--element-background)
         border: 1px solid var(--element-background)
         color: var(--text-secondary)
         margin-top: 24px        
 
         &::before
-            content: ''           
+            content: ''                        
 
         &::after
             content: var(--right-bubble)
@@ -40,10 +40,14 @@
             top: 0
             margin-top: -9px
             margin-right: -1px
+           
 
     &.loading
         height: 16px
         animation: loading .8s ease infinite
+
+.clearfix  
+  clear: both
 
 @keyframes loading
     0%

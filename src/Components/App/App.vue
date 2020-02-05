@@ -1,18 +1,18 @@
 <template>
     <main id="app">
     <section class="container chat-container">  
-        <table class="message">  
-            <tr>
-                <!-- message -->
-                 <component      
+        <table class="message" >          
+            <!-- message -->
+          
+                <component            
                     v-for="(message, index) in messages"
                     :is="message.component"                 
                     :key="index"
                     :text="message.text"
                     :from="message.to"
-                    > 
-                  </component>                
-            </tr>              
+                    >                     
+                </component>
+                              
         </table>
     </section>
     <ChatInput @submit="sendMessage"> 
@@ -121,9 +121,34 @@ export default {
         messages(messages){
             //if(this.history()) localStorage.setItem('message_history', JSON.stringify(messages)) // <- Save history if the feature is enabled
             console.log(messages)
+            console.log('-----------------messages triggered -----------')
         },
         // This function is triggered, when request is started or finished 
         loading(){
+            console.log('---------------loading triggered -----------')
+            const messages = document.getElementsByClassName('message');
+            let testcontainer = document.querySelector('#app') 
+            let shouldScroll = messages[0].scrollTop + messages[0].clientHeight === messages[0].scrollHeight;
+            if(!shouldScroll){
+                 messages[0].scrollTop = messages[0].scrollHeight;
+                 window.scrollTo({
+                        top: 100,
+                        left: 100,
+                        behavior: 'smooth'
+                        });
+            }
+            console.log(`------ This is messages -----`)
+            console.log(messages)
+            console.log(shouldScroll)
+            console.log(messages[0].scrollTop)
+            console.log(messages[0].clientHeight)
+            console.log(messages[0].scrollHeight)
+            console.log(`------ This is container-----`)
+            console.log(testcontainer.scrollTop)
+            console.log(testcontainer.clientHeight)
+            console.log(testcontainer.scrollHeight)
+            
+            /*
             setTimeout(() => {
                 let app = document.querySelector('#app') // <- We need to scroll down #app, to prevent the whole page jumping to bottom, when using in iframe
                 if (app.querySelector('.message')){
@@ -131,6 +156,7 @@ export default {
                     window.scrollTo({top: message, behavior: 'smooth'})
                 }
             }, 2) // <- wait for render (timeout) and then smoothly scroll #app down to the last message
+            */
         },
         // You don't need the function below. It's only for managed version, get the SEO right 
         app(agent){
@@ -149,20 +175,9 @@ export default {
             });
             this.message = ''
             this.action = ''
-        },
-        send(q){
-            let request = {
-                "queryInput": {
-                    "text": {
-                        "text": q,
-                        "languageCode": this.lang()
-                    }
-                }
-            } // <- this is how a Dialogflow request look like
-
-            this.loading = true
-            this.error = null
-            
+            this.loading=true
+        },       
+            /*
             // Backend Server Integration 
             fetch('http://localhost:3100/routes/test',
                            {method: 'GET', 
@@ -172,9 +187,8 @@ export default {
                 if (response.error) console.log(`error on server ${error}`)
                 console.log(response)
             }) 
-            
-
-        },
+            */
+        
         handle(response){
             /* This function is used for speech output */
             let text = "This is a demo" // <- init a text variable
@@ -194,13 +208,16 @@ export default {
             //this.messages = [...this.messages, ...data.reply];
             //this.messages = data.reply.filter(d => d.component == 'bubble')
             //this.suggestions = data.reply.filter(d => d.component == 'suggestion')
+            this.loading=true
             data.reply.forEach(e => {
                 switch(e.component){
                     case 'bubble':
                         this.messages.push(e)
+                        this.loading=false
                         break;
                     case 'suggestion':
                         this.suggestions.push(e)
+                        this.loading=false
                         break;
                     default:
                         break;

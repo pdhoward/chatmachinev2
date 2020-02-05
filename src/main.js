@@ -10,6 +10,7 @@ import config from './../config'
 //import { register_service_worker } from './utils'
 //register_service_worker() // <- register service worker, disable it, when running in development mode
 
+
 Vue.prototype.config = config // <- set config to global scope
 console.log(`>>>>>>>>>>>>>>>>>>>>>STARTING UP<<<<<<<<<<<<<<<<<<<<<<<<<<<<<`)
 /* (global) This code is going to tell us, if history mode can be activated on the client, so the application can be consumed without localstorage */
