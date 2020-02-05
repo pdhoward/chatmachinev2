@@ -111,8 +111,7 @@ export default {
           }
         },
     created(){
-        this.app = db
-        console.log(this.app)
+        this.app = db        
         //if(this.history()) localStorage.setItem('agent', JSON.stringify(configObj))
     },
     watch: {
@@ -120,58 +119,21 @@ export default {
         // This function is triggered, when new messages arrive 
         messages(messages){
             //if(this.history()) localStorage.setItem('message_history', JSON.stringify(messages)) // <- Save history if the feature is enabled
-            console.log(messages)
-            console.log('-----------------messages triggered -----------')
+            
+            console.log('--------------watch: new messages arrived---------')
         },
         // This function is triggered, when request is started or finished 
-        loading(){
-            console.log('---------------loading triggered -----------')
-            const messages = document.getElementsByClassName('message');
-            let testcontainer = document.querySelector('#app') 
-            let shouldScroll = messages[0].scrollTop + messages[0].clientHeight === messages[0].scrollHeight;
-            if(!shouldScroll){
-                 messages[0].scrollTop = messages[0].scrollHeight;
-                 window.scrollTo({
-                        top: 0,
-                        left: 100,
-                        behavior: 'smooth'
-                        });
-            }
-            console.log(`------ This is messages -----`)
-            console.log(messages)
-            console.log(shouldScroll)
-            console.log(messages[0].scrollTop)
-            console.log(messages[0].clientHeight)
-            console.log(messages[0].scrollHeight)
-            console.log(`------ This is container-----`)
-            console.log(testcontainer.scrollTop)
-            console.log(testcontainer.clientHeight)
-            console.log(testcontainer.scrollHeight)
-            console.log(`------ This is reference box-----`)
-            let heightString = this.$refs.messageBox.clientHeight                 
+        loading(){      
             this.$nextTick(() => {   
-                let chat = this.$refs.messageBox.clientHeight           
-                console.log(`Executing next tick ${chat}`)
+                let chat = this.$refs.messageBox.clientHeight 
                 this.$scrollTo(chat)
-            })
-            
-            /*
-            setTimeout(() => {
-                let app = document.querySelector('#app') // <- We need to scroll down #app, to prevent the whole page jumping to bottom, when using in iframe
-                if (app.querySelector('.message')){
-                    let message = app.querySelectorAll('.message')[app.querySelectorAll('.message').length - 1].offsetTop - 70
-                    window.scrollTo({top: message, behavior: 'smooth'})
-                }
-            }, 2) // <- wait for render (timeout) and then smoothly scroll #app down to the last message
-            */
+            })           
         },
         // You don't need the function below. It's only for managed version, get the SEO right 
         app(agent){
             set_seo(agent)
-        }
-        
-    },
-     
+        }        
+    },     
     methods: {
         sendMessage(e) {
             this.socket.emit('MESSAGE', {
@@ -183,18 +145,7 @@ export default {
             this.message = ''
             this.action = ''
             this.loading=true
-        },       
-            /*
-            // Backend Server Integration 
-            fetch('http://localhost:3100/routes/test',
-                           {method: 'GET', 
-                            headers: {'content-type': 'application/json'}})
-            .then(response => response.json())
-            .then(response => {
-                if (response.error) console.log(`error on server ${error}`)
-                console.log(response)
-            }) 
-            */
+        },           
         
         handle(response){
             /* This function is used for speech output */
@@ -210,11 +161,7 @@ export default {
         }
     },
     mounted() {
-        this.socket.on('RESPONSE', (data) => {
-            //this.messages = []
-            //this.messages = [...this.messages, ...data.reply];
-            //this.messages = data.reply.filter(d => d.component == 'bubble')
-            //this.suggestions = data.reply.filter(d => d.component == 'suggestion')
+        this.socket.on('RESPONSE', (data) => {          
             this.loading=true
             data.reply.forEach(e => {
                 switch(e.component){
@@ -229,13 +176,8 @@ export default {
                     default:
                         break;
                 }
-            })
+            })           
             
-            console.log(`Messages received`)
-            console.log(this.messages)
-            console.log(`SUGGESTIONS received`)
-            console.log(this.suggestions)
-            // you can also do this.messages.push(data)
         });
     }
 }
