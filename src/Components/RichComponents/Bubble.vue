@@ -12,10 +12,10 @@
     border-radius: 40px
     color: var(--text)
     border: 1px solid var(--border)
-    display: block
+    display: table
     position: relative
     background-color: var(--background)
-    min-width: 52px    
+    min-width: 52px
 
     &::before        
         content: var(--left-bubble)
