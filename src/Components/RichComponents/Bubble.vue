@@ -5,30 +5,32 @@
 </template>
 
 <style lang="sass" scoped>
-.bubble   
+
+.bubble
+    margin: 10px
     padding: 12px
     border-radius: 40px
     color: var(--text)
     border: 1px solid var(--border)
-    display: inline-block
+    display: block
     position: relative
     background-color: var(--background)
-    min-width: 52px
+    min-width: 52px    
 
-    &::before
+    &::before        
         content: var(--left-bubble)
         position: absolute
         left: 0
         top: 0
-        margin-top: -9px
-        margin-left: -1px        
+        margin-top: -10px
+        margin-left: -1px            
 
     &.me
         float: right         
         background-color: var(--element-background)
         border: 1px solid var(--element-background)
         color: var(--text-secondary)
-        margin-top: 24px        
+        margin-top: 10px        
 
         &::before
             content: ''                        
@@ -45,9 +47,9 @@
     &.loading
         height: 16px
         animation: loading .8s ease infinite
+.clearfix
+    clear: both
 
-.clearfix  
-  clear: both
 
 @keyframes loading
     0%

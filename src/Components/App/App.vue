@@ -144,10 +144,10 @@ export default {
             });            
             this.message = ''
             this.action = ''
-            //this.loading=true
+            this.loading=true
             let msg = {
                 component: 'bubble',
-                text: e.text,
+                text: (e.text) ? e.text : e.title,
                 to: 'guest'
 
             }
