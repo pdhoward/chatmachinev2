@@ -12,9 +12,12 @@
                     :from="message.to"
                     >                     
                 </component>
-            </tr>              
+                 
+            </tr> 
+              <DateTimeCard />          
         </table>       
     </section>
+    
     <ChatInput @submit="sendMessage"> 
         <!-- suggestions -->
          <component
@@ -58,6 +61,7 @@ import Bubble from './../RichComponents/Bubble.vue'
 import Card from './../RichComponents/Card.vue'
 import CardButton from './../RichComponents/CardButton.vue'
 import Carousel from './../RichComponents/Carousel.vue'
+import DateTimeCard from './../RichComponents/DateTimeCard.vue'
 import Link from './../RichComponents/Link.vue'
 import List from './../RichComponents/List.vue'
 import ListItem from './../RichComponents/ListItem.vue'
@@ -79,12 +83,14 @@ export default {
         Card,
         Carousel,     
         ChatInput,
+        DateTimeCard,
         Link,
         Suggestion,
         CardButton
     },
     data: function () {
     return {
+        date: null,
         cardComponent: Card,
         smallIconComponent: Card,
         smallIconProperties: test.smallcard,
