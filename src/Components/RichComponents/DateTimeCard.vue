@@ -6,7 +6,13 @@
             <div class="card-subtitle" v-if="subtitle">{{subtitle}}</div>
             <div class="card-text" v-if="text">{{text}}</div>
             <div>
-                <flat-pickr v-model="date"></flat-pickr>
+                <flat-pickr v-model="date"
+                            :config="config"
+                            placeholder="Select Date and Time"
+                            name="datetime"
+                >
+
+                </flat-pickr>
             </div>
             <slot></slot>
         </div>
@@ -59,7 +65,13 @@
   export default { 
     data () {
       return {
-        date: null,       
+        date: null,
+        config: {
+          altInput: true,
+          altFormat: "F j, Y",
+          enableTime: true,      
+          dateFormat: 'Y-m-d H:i'                   
+        } 
       }
     },
     components: {
