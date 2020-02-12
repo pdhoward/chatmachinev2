@@ -1,3 +1,5 @@
+
+
 <template>
     <div class="card">
         <img class="card-image" v-if="imageUri" :src="imageUri" :alt="imageTitle || title" />
