@@ -71,8 +71,8 @@
         config: {
           altInput: true,
           altFormat: "F j, Y",
-          enableTime: true,      
-          dateFormat: 'Y-m-d H:i'                   
+          enableTime: false,      
+          dateFormat: 'Y-m-d'                   
         } 
       }
     },

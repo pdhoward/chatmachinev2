@@ -61,7 +61,8 @@ import Bubble from './../RichComponents/Bubble.vue'
 import Card from './../RichComponents/Card.vue'
 import CardButton from './../RichComponents/CardButton.vue'
 import Carousel from './../RichComponents/Carousel.vue'
-import DateTimeCard from './../RichComponents/DateTimeCard.vue'
+import DateCard from './../RichComponents/DateCard.vue'
+import TimeCard from './../RichComponents/TimeCard.vue'
 import Link from './../RichComponents/Link.vue'
 import List from './../RichComponents/List.vue'
 import ListItem from './../RichComponents/ListItem.vue'
@@ -83,7 +84,8 @@ export default {
         Card,
         Carousel,     
         ChatInput,
-        DateTimeCard,
+        DateCard,
+        TimeCard,
         Link,
         Suggestion,
         CardButton
