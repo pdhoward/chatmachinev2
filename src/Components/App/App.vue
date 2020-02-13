@@ -14,7 +14,7 @@
                 </component>
                  
             </tr> 
-              <DateTimeCard />          
+              <DateCard />        
         </table>       
     </section>
     

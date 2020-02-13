@@ -10,10 +10,9 @@
             <div>
                 <flat-pickr v-model="date"
                             :config="config"
-                            placeholder="Select Date and Time"
+                            placeholder="Please select a date"
                             name="datetime"
                 >
-
                 </flat-pickr>
             </div>
             <slot></slot>
