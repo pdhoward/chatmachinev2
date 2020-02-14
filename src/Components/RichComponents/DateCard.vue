@@ -62,7 +62,7 @@
   import 'flatpickr/dist/flatpickr.css';
   
   export default { 
-    name: 'Datecard',
+    name: 'DateCard',
     props: ['text', 'imageUri', 'imageTitle', 'subtitle', 'title'],
     data () {
       return {
