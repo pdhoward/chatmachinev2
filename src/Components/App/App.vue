@@ -4,17 +4,19 @@
         <table class="message" >          
             <!-- message -->
             <tr id="message-box" ref="messageBox">
-                <component            
+                <component         
                     v-for="(message, index) in messages"
                     :is="message.component"                 
                     :key="index"
+                    :imageUri="message.imageUri"
+                    :title="message.title"
+                    :subtitle="message.subtitle"
                     :text="message.text"
                     :from="message.to"
                     >                     
                 </component>
                  
-            </tr> 
-              <DateCard />        
+            </tr>                  
         </table>       
     </section>
     
@@ -80,15 +82,15 @@ import './Theme.sass'
 export default {
     name: 'app',
     components: {
-        Bubble,
-        Card,
-        Carousel,     
-        ChatInput,
-        DateCard,
-        TimeCard,
-        Link,
-        Suggestion,
-        CardButton
+        'bubble': Bubble,
+        'card': Card,
+        'carousel': Carousel,     
+        'chatinput': ChatInput,
+        'datecard': DateCard,
+        'timecard': TimeCard,
+        'link': Link,
+        'suggestion': Suggestion,
+        'cardbutton': CardButton
     },
     data: function () {
     return {
@@ -159,6 +161,7 @@ export default {
                 to: 'guest'
 
             }
+            // post user message to the web page
             this.messages.push(msg)
             //this.loading=false
         },           
@@ -182,6 +185,8 @@ export default {
             data.reply.forEach(e => {
                 switch(e.component){
                     case 'bubble':
+                        console.log(`this is detecting bubble`)
+                        console.log(e)
                         this.messages.push(e)
                         this.loading=false
                         break;
@@ -190,6 +195,10 @@ export default {
                         this.loading=false
                         break;
                     default:
+                        console.log(`detected some other component`)
+                        console.log(e)
+                        this.messages.push(e)
+                        this.loading=false
                         break;
                 }
             })           

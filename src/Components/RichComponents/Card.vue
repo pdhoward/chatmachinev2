@@ -1,4 +1,4 @@
-<template>
+<template>  
     <div class="card">
         <img class="card-image" v-if="imageUri" :src="imageUri" :alt="imageTitle || title" />
         <div class="card-content">
@@ -7,7 +7,7 @@
             <div class="card-text" v-if="text">{{text}}</div>
             <slot></slot>
         </div>
-    </div>
+    </div>   
 </template>
 
 <style lang="sass" scoped>

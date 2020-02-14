@@ -1,7 +1,9 @@
-<template>
-    <span class="bubble clearfix" :class="{'me': from == 'me', 'loading': loading}">
-        {{text}}
-    </span>
+<template >
+    <div>
+        <span class="bubble clearfix" :class="{'me': from == 'me', 'loading': loading}">
+            {{text}}
+        </span>
+    </div>
 </template>
 
 <style lang="sass" scoped>

@@ -1,5 +1,3 @@
-
-
 <template>
     <div class="card">
         <img class="card-image" v-if="imageUri" :src="imageUri" :alt="imageTitle || title" />
@@ -64,6 +62,8 @@
   import 'flatpickr/dist/flatpickr.css';
   
   export default { 
+    name: 'Datecard',
+    props: ['text', 'imageUri', 'imageTitle', 'subtitle', 'title'],
     data () {
       return {
         date: null,
@@ -77,9 +77,8 @@
     },
     components: {
       flatPickr
-    },
-    name: 'DateTimeCard',
-    props: ['text', 'imageUri', 'imageTitle', 'subtitle', 'title']
+    }
+    
   }
 
 </script>
