@@ -13,7 +13,6 @@
                             placeholder="Select Date and Time"
                             name="datetime"
                 >
-
                 </flat-pickr>
             </div>
             <slot></slot>
@@ -65,12 +64,15 @@
   import 'flatpickr/dist/flatpickr.css';
   
   export default { 
+    name: 'TimeCard',
+    props: ['text', 'imageUri', 'imageTitle', 'subtitle', 'title'],
     data () {
       return {
         date: null,
         config: {
             enableTime: true,
             noCalendar: true,
+            onChange: this.timeselected,
             dateFormat: "H:i",
             defaultDate: "17:00",
             minTime: "17:00",
@@ -80,8 +82,16 @@
     components: {
       flatPickr
     },
-    name: 'DateTimeCard',
-    props: ['text', 'imageUri', 'imageTitle', 'subtitle', 'title']
+     methods: {    
+         timeselected(selectedTime, timeStr){
+            console.log('event triggered')
+            console.log(selectedTime, timeStr)
+            this.$parent.sendMessage({
+              component: "query",
+              text: timeStr.trim()})
+         } 
+    }
+   
   }
 
 </script>

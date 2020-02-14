@@ -84,7 +84,9 @@
          dateselected(selectedDates, dateStr){
             console.log('event triggered')
             console.log(selectedDates, dateStr)
-            this.$parent.sendMessage(dateStr)
+            this.$parent.sendMessage({
+              component: "query",
+              text: dateStr.trim()})
          } 
     }
         
