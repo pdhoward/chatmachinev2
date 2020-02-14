@@ -71,14 +71,23 @@
           altInput: true,
           altFormat: "F j, Y",
           enableTime: false,      
-          dateFormat: 'Y-m-d'                   
+          dateFormat: 'Y-m-d',
+          onChange: this.dateselected,
+          inline: true           
         } 
       }
     },
     components: {
       flatPickr
+    },
+    methods: {    
+         dateselected(selectedDates, dateStr){
+            console.log('event triggered')
+            console.log(selectedDates, dateStr)
+            this.$parent.sendMessage(dateStr)
+         } 
     }
-    
+        
   }
 
 </script>

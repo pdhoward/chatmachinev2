@@ -14,9 +14,8 @@
                     :text="message.text"
                     :from="message.to"
                     >                     
-                </component>
-                 
-            </tr>                  
+                </component>                 
+            </tr>              
         </table>       
     </section>
     
@@ -85,10 +84,10 @@ export default {
         'bubble': Bubble,
         'card': Card,
         'carousel': Carousel,     
-        'chatinput': ChatInput,
+        ChatInput,
         'datecard': DateCard,
         'timecard': TimeCard,
-        'link': Link,
+        'linkit': Link,
         'suggestion': Suggestion,
         'cardbutton': CardButton
     },
@@ -144,7 +143,7 @@ export default {
             set_seo(agent)
         }        
     },     
-    methods: {
+    methods:{
         sendMessage(e) {
             this.socket.emit('MESSAGE', {
                 user: "Test User",
