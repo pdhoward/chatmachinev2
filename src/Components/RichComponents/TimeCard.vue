@@ -74,8 +74,8 @@
             noCalendar: true,
             onChange: this.timeselected,
             dateFormat: "H:i",
-            defaultDate: "17:00",
-            minTime: "17:00",
+            defaultDate: "18:00",
+            minTime: "18:00",
             maxTime: "22:30"} 
       }
     },
