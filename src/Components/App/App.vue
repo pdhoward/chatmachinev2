@@ -88,7 +88,7 @@ export default {
         'datecard': DateCard,
         'timecard': TimeCard,
         'linkit': Link,
-        'suggestion': Suggestion,
+        'suggestions': Suggestion,
         'cardbutton': CardButton
     },
     data: function () {
@@ -189,7 +189,7 @@ export default {
                         this.messages.push(e)
                         this.loading=false
                         break;
-                    case 'suggestion':
+                    case 'suggestions':
                         this.suggestions.push(e)
                         this.loading=false
                         break;
