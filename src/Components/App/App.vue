@@ -145,6 +145,8 @@ export default {
     },     
     methods:{
         sendMessage(e) {
+            console.log(`-----------------debug -- why not query -------`)
+            console.log(e)
             this.socket.emit('MESSAGE', {
                 user: "Test User",
                 netId: "rest001",
