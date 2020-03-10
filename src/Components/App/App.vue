@@ -119,10 +119,12 @@ export default {
             }
           }
         },
+
     created(){
         this.app = db        
         //if(this.history()) localStorage.setItem('agent', JSON.stringify(configObj))
-    },
+        },
+
     watch: {
         
         // This function is triggered, when new messages arrive 
@@ -142,8 +144,10 @@ export default {
         app(agent){
             set_seo(agent)
         }        
-    },     
+    },
+
     methods:{
+       
         sendMessage(e) {
             console.log(`-----------------debug -- why not query -------`)
             console.log(e)
@@ -180,6 +184,7 @@ export default {
             console.log(obj)
         }
     },
+
     mounted() {
         this.socket.on('RESPONSE', (data) => {          
             this.loading=true
@@ -204,7 +209,12 @@ export default {
                 }
             })           
             
-        });
+        }),
+        // this is a cross document communication to the parent web page
+        // in the event that this app is used in an iframe
+        this.socket.on('connect', () =>{
+            window.parent.postMessage(this.socket.id, '*')
+        })
     }
 }
 </script>
