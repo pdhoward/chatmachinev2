@@ -210,8 +210,11 @@ export default {
             })           
             
         }),
-        // this is a cross document communication to the parent web page
-        // in the event that this app is used in an iframe
+        /////////////////////////////////////////////////////////
+        //   Cross document communication to parent web page  //
+        //   if chat app used in a webapp via sdk. Permits   //
+        //   webapp to a number of sdk functions/apis       //
+        /////////////////////////////////////////////////////
         this.socket.on('connect', () =>{
             window.parent.postMessage(this.socket.id, '*')
         })
