@@ -15,9 +15,11 @@
                     :from="message.to"
                     >                     
                 </component>                 
-            </tr>              
-        </table>       
+            </tr>     
+                    
+        </table>         
     </section>
+    
     
     <ChatInput @submit="sendMessage"> 
         <!-- suggestions -->
@@ -71,6 +73,7 @@ import Picture from './../RichComponents/Picture.vue'
 import Media from './../RichComponents/Media.vue'
 import TableCard from './../RichComponents/TableCard.vue'
 import Suggestion from './../RichComponents/Suggestion.vue'
+import Videoclip from './../RichComponents/Videoclip.vue'
 
 import * as uuidv1 from 'uuid/v1'
 import { set_seo } from './../../utils'
@@ -89,7 +92,8 @@ export default {
         'timecard': TimeCard,
         'linkit': Link,
         'suggestions': Suggestion,
-        'cardbutton': CardButton
+        'cardbutton': CardButton,
+        'videoclip': Videoclip 
     },
     data: function () {
     return {
@@ -107,7 +111,7 @@ export default {
         session: '',
         muted: this.config.app.muted,
         loading: false,
-        error: null,
+        error: null,       
         socket : io('localhost:4000', { query: "netId=rest001" })
         }      
     },
