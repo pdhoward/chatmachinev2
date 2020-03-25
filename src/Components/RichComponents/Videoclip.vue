@@ -28,7 +28,9 @@
       return {
         $video: null,
         togglePipButton: null,
-        clip: "assets/ibmcallcenter.mp4",
+        clip: "https://res.cloudinary.com/stratmachine/video/upload/v1585142740/ibmcallcenter_e2cb0c.mp4",
+        //clip: "https://www.youtube.com/watch?v=9G_AnmzZNbM",
+        //clip: "assets/ibmcallcenter.mp4",
         poster: "assets/sm256.png"
       }
     },
