@@ -9,6 +9,7 @@
                     :is="message.component"                 
                     :key="index"
                     :imageUri="message.imageUri"
+                    :assetUri="message.assetUri"
                     :title="message.title"
                     :subtitle="message.subtitle"
                     :text="message.text"

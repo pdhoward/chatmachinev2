@@ -23,12 +23,13 @@
   // https://googlechrome.github.io/samples/auto-picture-in-picture/
   export default {
     name: 'Videoclip',
-    props: [],
+    props: ['assetUri'],
     data () {
       return {
         $video: null,
         togglePipButton: null,
-        clip: "https://res.cloudinary.com/stratmachine/video/upload/v1585142740/ibmcallcenter_e2cb0c.mp4",
+        clip: null,
+        //clip: "https://res.cloudinary.com/stratmachine/video/upload/v1585142740/ibmcallcenter_e2cb0c.mp4",
         //clip: "https://www.youtube.com/watch?v=9G_AnmzZNbM",
         //clip: "assets/ibmcallcenter.mp4",
         poster: "assets/sm256.png"
@@ -60,9 +61,12 @@
                 // Video failed to leave Picture-in-Picture mode.
              });
             }
-        });
+        })
+        console.log(this.$props)
+        this.clip = this.$props.assetUri
+
         if (!document.pictureInPictureEnabled) {
-            console.log(`================pip not supprted============`)
+            console.log(`================pip not supported============`)
         }
       }
 
