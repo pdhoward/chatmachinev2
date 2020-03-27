@@ -8,12 +8,13 @@ module.exports = {
     devServer: {
         open: true,
         port: 3100,
-        proxy: 'http://localhost:4000',
+        //proxy: 'http://localhost:4000',
+        proxy: 'https://chaotic.ngrok.io',
         proxy: {
           '/api*': {
             // Forward frontend dev server request for /api to nodejs dev server
             // target: 'http://localhost:8000/',  // This one works as wel since 127.0.0.1 == localhost for me.
-            target: 'http://localhost:4000/',  // <- django's default
+            target: 'https://chaotic.ngrok.io',  // <- django's default
           }
         }      
 
