@@ -1,7 +1,9 @@
 {
   "name": "vuercs",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.2.0",
+  "author": "Strategic Machines",
+  "license": "MIT",
+  "description": "TAPP Canvas",
   "scripts": {
     "serve": "vue-cli-service serve --host localhost --port 3100 ",
     "build": "vue-cli-service build"
