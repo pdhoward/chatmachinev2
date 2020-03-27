@@ -8,6 +8,7 @@
                     v-for="(message, index) in messages"
                     :is="message.component"                 
                     :key="index"
+                    :actionKey="message.actionKey"
                     :imageUri="message.imageUri"
                     :assetUri="message.assetUri"
                     :title="message.title"
