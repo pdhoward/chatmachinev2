@@ -1,4 +1,4 @@
-[dist]
+[build]
   command = "npm run build"
-  publish = "/public"
+  publish = "dist"
  
