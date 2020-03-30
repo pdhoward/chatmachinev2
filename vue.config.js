@@ -8,28 +8,17 @@ module.exports = {
     devServer: {
         open: true,
         port: 3100,
-        //proxy: 'http://localhost:4000',
-        proxy: 'https://chaotic.ngrok.io',
+        proxy: 'http://localhost:4000',        
         proxy: {
           '/api*': {
             // Forward frontend dev server request for /api to nodejs dev server
-            // target: 'http://localhost:8000/',  // This one works as wel since 127.0.0.1 == localhost for me.
-            target: 'https://chaotic.ngrok.io',  // <- django's default
+            target: 'http://localhost:4000/'           
           }
         }      
 
     },
     chainWebpack: config => {
         // remove vue-cli-service's progress output
-        config.plugins.delete('progress')
-        // optionally replace with another progress output plugin
-        // `npm i -D simple-progress-webpack-plugin` to use
-        /*
-        config.plugin('simple-progress-webpack-plugin').use(require.resolve('simple-progress-webpack-plugin'), [
-          {
-            format: 'minimal', // options are minimal, compact, expanded, verbose
-          },
-        ])
-        */
+        config.plugins.delete('progress')        
       }
 }
