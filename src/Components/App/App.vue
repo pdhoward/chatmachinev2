@@ -114,7 +114,8 @@ export default {
         muted: this.config.app.muted,
         loading: false,
         error: null,       
-        socket : io('localhost:4000', { query: "netId=rest001" })
+        //socket : io('localhost:4000', { query: "netId=rest001" })
+        socket : io('https://chaotic.ngrok.io', { query: "netId=rest001" })
         }      
     },
     computed: {
