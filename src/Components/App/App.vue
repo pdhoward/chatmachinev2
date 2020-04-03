@@ -113,10 +113,14 @@ export default {
         session: '',
         muted: this.config.app.muted,
         loading: false,
-        error: null,       
+        error: null,
+        io_args: {
+            query: "netId=rest001",
+            uri: "localhost:4000"
+        },    
         //socket : io('localhost:4000', { query: "netId=rest001" })
         //socket : io('https://chaotic.ngrok.io', { query: "netId=rest001" })
-        socket : io('https://machinev2-dev.us-east-1.elasticbeanstalk.com', { query: "netId=rest001" })
+        socket: null
         }      
     },
     computed: {
@@ -156,9 +160,7 @@ export default {
 
     methods:{
        
-        sendMessage(e) {
-            console.log(`-----------------debug -- why not query -------`)
-            console.log(e)
+        sendMessage(e) {           
             this.socket.emit('MESSAGE', {
                 user: "Test User",
                 netId: "rest001",
@@ -193,7 +195,30 @@ export default {
         }
     },
 
-    mounted() {
+    async mounted() {
+        console.log(`HELLO FROM THE APP ------`)
+        console.log(process.env.VUE_APP_RUN_ENV)        
+        let run_env = process.env.VUE_APP_RUN_ENV 
+        switch(run_env){
+            case 'development':
+                this.io_args.uri = process.env.VUE_APP_URI_DEVELOPMENT
+                break;
+            // 
+            case 'stage':
+                this.io_args.uri = process.env.VUE_APP_URI_STAGE
+                break;
+            // 
+            case 'production':
+                this.io_args.uri = process.env.VUE_APP_URI_PRODUCTION
+                break;
+            // 
+            default:
+                console.log(`ERROR IN APP INITIALIZING SOCKETS`)
+                break;
+        }
+        console.log(this.io_args.uri)
+        this.socket = await io(this.io_args.uri, { query: this.io_args.query })
+
         this.socket.on('RESPONSE', (data) => {          
             this.loading=true
             data.reply.forEach(e => {
