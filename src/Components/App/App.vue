@@ -115,7 +115,8 @@ export default {
         loading: false,
         error: null,       
         //socket : io('localhost:4000', { query: "netId=rest001" })
-        socket : io('https://chaotic.ngrok.io', { query: "netId=rest001" })
+        //socket : io('https://chaotic.ngrok.io', { query: "netId=rest001" })
+        socket : io('http://machinev2-dev.us-east-1.elasticbeanstalk.com', { query: "netId=rest001" })
         }      
     },
     computed: {
