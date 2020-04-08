@@ -35,7 +35,9 @@ Vue.prototype.lang = () => {
 }
 
 // global function to set scroll to bottom of chatwindow
-Vue.prototype.$scrollTo = (chat) => {   
+Vue.prototype.$scrollTo = (chat) => {
+    console.log(`-----THIS WAS TRIGGERED ----`) 
+    console.log(chat)
     window.scrollTo(0, chat + 30 );    ;
   }
 

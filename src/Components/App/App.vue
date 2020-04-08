@@ -137,22 +137,17 @@ export default {
         //if(this.history()) localStorage.setItem('agent', JSON.stringify(configObj))
         },
 
-    watch: {
-        
+    watch: {        
         // This function is triggered, when new messages arrive 
-        messages(messages){
+       messages(messages){
             //if(this.history()) localStorage.setItem('message_history', JSON.stringify(messages)) // <- Save history if the feature is enabled
-            
-            console.log('--------------watch: new messages arrived---------')
-        },
-        // This function is triggered, when request is started or finished 
-        loading(){      
-            this.$nextTick(() => {   
-                let chat = this.$refs.messageBox.clientHeight 
-                this.$scrollTo(chat)
-            })           
-        },
-        // You don't need the function below. It's only for managed version, get the SEO right 
+            console.log('----WATCH: NEW MESSAGE ARRIVED-----')
+            this.$nextTick(() => {               
+              let chat = this.$refs.messageBox.clientHeight 
+              this.$scrollTo(chat)
+            })
+       },       
+        // Function for managed version, get the SEO right 
         app(agent){
             set_seo(agent)
         }        
@@ -195,9 +190,7 @@ export default {
         }
     },
 
-    async mounted() {
-        console.log(`HELLO FROM THE APP ------`)
-        console.log(process.env.VUE_APP_RUN_ENV)        
+    async mounted() {             
         let run_env = process.env.VUE_APP_RUN_ENV 
         switch(run_env){
             case 'development':
@@ -215,8 +208,7 @@ export default {
             default:
                 console.log(`ERROR IN APP INITIALIZING SOCKETS`)
                 break;
-        }
-        console.log(this.io_args.uri)
+        }        
         this.socket = await io(this.io_args.uri, { query: this.io_args.query })
 
         this.socket.on('RESPONSE', (data) => {          
